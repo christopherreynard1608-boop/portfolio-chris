@@ -5,7 +5,7 @@ const galleryData = {
         'asset/image/figma_gjt.png', 
         'https://www.youtube.com/live/p8L395cZMi8?si=u3FW4zXAbTFnn7Qr',
         'asset/image/tekken_tourney.jpeg',
-        'https://youtu.be/8vlo3XRfqlI' 
+        'https://www.youtube.com/watch?v=8vlo3XRfqlI' 
     ]
 };
 
@@ -148,6 +148,7 @@ function startLoading() {
         }
     }, 100);
 }
+
 
 
 window.onload = startLoading;
