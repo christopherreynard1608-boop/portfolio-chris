@@ -34,7 +34,7 @@ function openGallery(setName) {
         if (src.toLowerCase().includes('yout')) {
             const videoId = getYouTubeId(src);
           
-            const thumbUrl = 'https://img.youtube.com/vi/${videoId}/hqdefault.jpg';
+            const thumbUrl = 'https://img.youtube.com/vi/${videoId}/maxresdefault.jpg';
 
             content = `
                 <div class="slide fade">
@@ -152,4 +152,5 @@ function startLoading() {
 
 
 window.onload = startLoading;
+
 
