@@ -22,6 +22,8 @@ function openGallery(setName) {
     const items = galleryData[setName];
     const slidesWrapper = document.getElementById('slides-wrapper');
     const dotWrapper = document.getElementById('dot-wrapper');
+    if (src.toLowerCase().includes('yout')) {
+    const videoId = getYouTubeId(src);
 
     if (!items || !slidesWrapper || !dotWrapper) return;
 
@@ -34,7 +36,26 @@ function openGallery(setName) {
         if (src.toLowerCase().includes('yout')) {
             const videoId = getYouTubeId(src);
           
-            const thumbUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+            function getYouTubeId(url) {
+    // This Regex is much broader: it catches ?v=, /live/, /embed/, and short youtu.be links
+    const regex = /(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?|live)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+    const match = url.match(regex);
+    return (match && match[1]) ? match[1] : null;
+}
+
+    
+    const thumbUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+
+    content = `
+        <div class="slide fade">
+            <a href="${src}" target="_blank" class="video-link-container">
+                <img src="${thumbUrl}" alt="Watch on YouTube" style="width:100%; display:block;">
+                <div class="play-overlay">
+                    <div class="play-button"></div>
+                </div>
+            </a>
+        </div>`;
+}
 
             content = `
                 <div class="slide fade">
@@ -152,6 +173,7 @@ function startLoading() {
 
 
 window.onload = startLoading;
+
 
 
 
