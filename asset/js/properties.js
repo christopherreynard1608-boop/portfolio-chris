@@ -14,7 +14,8 @@ let slideTimer;
 
 
 function getYouTubeId(url) {
-    const match = url.match(/(?:live\/|v=)([a-zA-Z0-9_-]{11})/);
+    const regex = /(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?|live)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+    const match = url.match(regex);
     return (match && match[1]) ? match[1] : null;
 }
 
@@ -36,12 +37,6 @@ function openGallery(setName) {
         if (src.toLowerCase().includes('yout')) {
             const videoId = getYouTubeId(src);
           
-            function getYouTubeId(url) {
-    // This Regex is much broader: it catches ?v=, /live/, /embed/, and short youtu.be links
-    const regex = /(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?|live)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
-    const match = url.match(regex);
-    return (match && match[1]) ? match[1] : null;
-}
 
     
     const thumbUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
@@ -173,6 +168,7 @@ function startLoading() {
 
 
 window.onload = startLoading;
+
 
 
 
