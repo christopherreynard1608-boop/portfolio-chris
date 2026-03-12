@@ -5,7 +5,7 @@ const galleryData = {
         'asset/image/figma_gjt.png', 
         'https://www.youtube.com/live/p8L395cZMi8?si=u3FW4zXAbTFnn7Qr',
         'asset/image/tekken_tourney.jpeg',
-        'https://www.youtube.com/watch?v=8vlo3XRfqlI' 
+        'https://youtu.be/8vlo3XRfqlI' 
     ]
 };
 
@@ -14,8 +14,7 @@ let slideTimer;
 
 
 function getYouTubeId(url) {
-    const regex = /(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?|live)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
-    const match = url.match(regex);
+    const match = url.match(/(?:live\/|v=)([a-zA-Z0-9_-]{11})/);
     return (match && match[1]) ? match[1] : null;
 }
 
@@ -23,8 +22,6 @@ function openGallery(setName) {
     const items = galleryData[setName];
     const slidesWrapper = document.getElementById('slides-wrapper');
     const dotWrapper = document.getElementById('dot-wrapper');
-    if (src.toLowerCase().includes('yout')) {
-    const videoId = getYouTubeId(src);
 
     if (!items || !slidesWrapper || !dotWrapper) return;
 
@@ -37,20 +34,7 @@ function openGallery(setName) {
         if (src.toLowerCase().includes('yout')) {
             const videoId = getYouTubeId(src);
           
-
-    
-    const thumbUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
-
-    content = `
-        <div class="slide fade">
-            <a href="${src}" target="_blank" class="video-link-container">
-                <img src="${thumbUrl}" alt="Watch on YouTube" style="width:100%; display:block;">
-                <div class="play-overlay">
-                    <div class="play-button"></div>
-                </div>
-            </a>
-        </div>`;
-}
+            const thumbUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
 
             content = `
                 <div class="slide fade">
@@ -166,10 +150,4 @@ function startLoading() {
 }
 
 
-
 window.onload = startLoading;
-
-
-
-
-
